@@ -48,6 +48,39 @@ class RecipeBrowserScreen extends StatelessWidget {
                       size: 30.0,
                     ))
               ],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Expanded(
+              child: ListView(
+                children: [
+                  Card(
+                    child: SizedBox(
+                      height: 150.0,
+                        child: Text('Recipe 1')
+                    ),
+                    elevation: 1.0,
+                    color: Colors.white,
+                  ),
+                  Card(
+                    child: SizedBox(
+                        height: 150.0,
+                        child: Text('Recipe 2')
+                    ),
+                    elevation: 1.0,
+                    color: Colors.white,
+                  ),
+                  Card(
+                    child: SizedBox(
+                        height: 150.0,
+                        child: Text('Recipe 3')
+                    ),
+                    elevation: 1.0,
+                    color: Colors.white,
+                  )
+                ],
+              ),
             )
           ],
         ),
