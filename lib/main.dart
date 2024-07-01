@@ -2,7 +2,7 @@ import 'package:cookbook_flutter/screens/recipe_browser_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(CookbookApp());
+  runApp(const CookbookApp());
 }
 
 class CookbookApp extends StatelessWidget {
@@ -10,7 +10,7 @@ class CookbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: RecipeBrowserScreen(),
     );
   }
