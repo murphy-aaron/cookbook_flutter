@@ -1,16 +1,16 @@
-import 'package:cookbook_flutter/components/recipe_image.dart';
 import 'package:cookbook_flutter/util/constants.dart';
 import 'package:flutter/material.dart';
-
 import '../components/recipe_card.dart';
-import '../components/recipe_tag.dart';
 
 class RecipeBrowserScreen extends StatelessWidget {
   const RecipeBrowserScreen({super.key});
 
+  static const String id = '/';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
         backgroundColor: kPrimaryColor,
         title: const Center(
