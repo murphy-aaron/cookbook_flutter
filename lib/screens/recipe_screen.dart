@@ -1,5 +1,5 @@
 import 'package:cookbook_flutter/components/ingredient_list.dart';
-import 'package:cookbook_flutter/components/recipe_image.dart';
+import 'package:cookbook_flutter/util/constants.dart';
 import 'package:flutter/material.dart';
 
 class RecipeScreen extends StatelessWidget {
@@ -40,9 +40,13 @@ class RecipeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 10),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(Icons.timelapse),
-                    Text(' Total: 60 minutes')
+                    Text(' Total: 60 minutes'),
+                    SizedBox(width: 50),
+                    Icon(Icons.dining_outlined),
+                    Text('Makes: 4 servings')
                   ],
                 ),
                 SizedBox(height: 10),
@@ -52,7 +56,7 @@ class RecipeScreen extends StatelessWidget {
                   'Ingredients',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                IngredientList()
+                IngredientList(),
               ],
             ),
           )
