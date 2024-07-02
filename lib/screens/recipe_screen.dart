@@ -1,3 +1,4 @@
+import 'package:cookbook_flutter/components/ingredient_list.dart';
 import 'package:cookbook_flutter/components/recipe_image.dart';
 import 'package:flutter/material.dart';
 
@@ -13,8 +14,8 @@ class RecipeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
+        // crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 180.0,
@@ -26,13 +27,32 @@ class RecipeScreen extends StatelessWidget {
             )),
           ),
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(10.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Recipe Title Goes Here',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                )
+                ),
+                Text(
+                  'Short recipe description goes here. List sides, cooking method, or other notes.'
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Icon(Icons.timelapse),
+                    Text(' Total: 60 minutes')
+                  ],
+                ),
+                SizedBox(height: 10),
+                Divider(height: 2),
+                SizedBox(height: 10),
+                Text(
+                  'Ingredients',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                IngredientList()
               ],
             ),
           )
