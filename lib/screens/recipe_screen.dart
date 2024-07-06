@@ -1,5 +1,7 @@
 import 'package:cookbook_flutter/components/ingredient_list.dart';
 import 'package:cookbook_flutter/model/ingredient.dart';
+import 'package:cookbook_flutter/screens/cooking_steps_screen.dart';
+import 'package:cookbook_flutter/util/constants.dart';
 import 'package:flutter/material.dart';
 import '../model/recipe.dart';
 
@@ -74,6 +76,18 @@ class RecipeScreen extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 IngredientList(ingredients: recipe.ingredients),
+                Center(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, CookingStepsScreen.id);
+                      },
+                      child: Text('Let\'s get cooking!'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: kPrimaryColor,
+                      foregroundColor: Colors.white
+                    ),
+                  ),
+                )
               ],
             ),
           )
