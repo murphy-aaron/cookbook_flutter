@@ -1,10 +1,12 @@
 import 'package:cookbook_flutter/util/constants.dart';
 import 'package:flutter/material.dart';
 
-class IngredientListItem extends StatelessWidget {
-  const IngredientListItem({required this.ingredientName, required this.isChecked, required this.checkboxCallback});
+import '../model/ingredient.dart';
 
-  final String ingredientName;
+class IngredientListItem extends StatelessWidget {
+  const IngredientListItem({required this.ingredient, required this.isChecked, required this.checkboxCallback});
+
+  final Ingredient ingredient;
   final bool isChecked;
   final Function(bool?) checkboxCallback;
 
@@ -19,7 +21,7 @@ class IngredientListItem extends StatelessWidget {
         value: isChecked,
         onChanged: checkboxCallback,
       ),
-        Text(ingredientName)
+        Text('${ingredient.name}')
       ]
     );
   }
