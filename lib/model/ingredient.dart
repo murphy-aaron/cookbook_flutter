@@ -5,6 +5,10 @@ class Ingredient {
   String name;
   double portion;
   Unit unit;
+
+  String getLabel() {
+    return name;
+  }
 }
 
 enum Unit { tsp, tbsp, cup, pt, qt, gal, oz, lb, g }

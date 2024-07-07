@@ -1,4 +1,3 @@
-import 'package:cookbook_flutter/screens/cooking_steps_screen.dart';
 import 'package:cookbook_flutter/screens/recipe_browser_screen.dart';
 import 'package:cookbook_flutter/screens/recipe_screen.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +15,7 @@ class CookbookApp extends StatelessWidget {
       initialRoute: RecipeBrowserScreen.id,
       routes: {
         RecipeBrowserScreen.id: (context) => RecipeBrowserScreen(),
-        RecipeScreen.id: (context) => RecipeScreen(),
-        CookingStepsScreen.id: (context) => CookingStepsScreen()
+        RecipeScreen.id: (context) => RecipeScreen()
       },
     );
   }

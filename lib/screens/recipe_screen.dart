@@ -1,7 +1,6 @@
-import 'package:cookbook_flutter/components/ingredient_list.dart';
+import 'package:cookbook_flutter/components/sized_divider.dart';
+import 'package:cookbook_flutter/components/titled_checklist.dart';
 import 'package:cookbook_flutter/model/ingredient.dart';
-import 'package:cookbook_flutter/screens/cooking_steps_screen.dart';
-import 'package:cookbook_flutter/util/constants.dart';
 import 'package:flutter/material.dart';
 import '../model/recipe.dart';
 
@@ -16,7 +15,10 @@ Recipe recipe = Recipe(
     Ingredient(name: 'Ingredient 3', portion: 3, unit: Unit.oz),
     Ingredient(name: 'Ingredient 4', portion: 0.5, unit: Unit.tsp)
   ],
-  utensils: [],
+  utensils: [
+    'Large mixing bowl',
+    'Large cast iron skillet'
+  ],
   cookingSteps: [],
   image: 'https://assets.epicurious.com/photos/5988e3458e3ab375fe3c0caf/1:1/w_1280,c_limit/How-to-Make-Chicken-Alfredo-Pasta-hero-02082017.jpg'
 );
@@ -68,25 +70,15 @@ class RecipeScreen extends StatelessWidget {
                     Text(' Makes: ${recipe.servings.round()} servings')
                   ],
                 ),
-                SizedBox(height: 10),
-                Divider(height: 2),
-                SizedBox(height: 10),
-                Text(
-                  'Ingredients',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                SizedDivider(),
+                TitledChecklist(
+                    title: 'Ingredients',
+                    listItems: recipe.getIngredientLabels()
                 ),
-                IngredientList(ingredients: recipe.ingredients),
-                Center(
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, CookingStepsScreen.id);
-                      },
-                      child: Text('Let\'s get cooking!'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: kPrimaryColor,
-                      foregroundColor: Colors.white
-                    ),
-                  ),
+                SizedDivider(),
+                TitledChecklist(
+                    title: 'Utensils',
+                    listItems: recipe.utensils
                 )
               ],
             ),

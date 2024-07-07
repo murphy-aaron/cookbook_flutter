@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+import '../util/constants.dart';
+
+class TitledChecklist extends StatefulWidget {
+  const TitledChecklist({required this.title, required this.listItems});
+
+  final String title;
+  final List<String> listItems;
+
+  @override
+  State<TitledChecklist> createState() => _TitledChecklistState();
+}
+
+class _TitledChecklistState extends State<TitledChecklist> {
+
+  List<bool> listItemsChecked = List.filled(6, false, growable: false);
+
+  @override
+  Widget build(BuildContext context) {
+
+    final String title = widget.title;
+    final List<String> listItems = widget.listItems;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+        ListView.builder(
+          itemBuilder: (context, index) {
+            final String label = listItems[index];
+            return ChecklistItem(
+                label: label,
+                isChecked: listItemsChecked[index],
+                checkboxCallback: (checkboxState) {
+                  setState(() {
+                    listItemsChecked[index] = checkboxState!;
+                  });
+                }
+            );
+          },
+          itemCount: listItems.length,
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+        ),
+      ],
+    );
+  }
+}
+
+class ChecklistItem extends StatelessWidget {
+
+  const ChecklistItem({required this.label, required this.isChecked, required this.checkboxCallback});
+
+  final String label;
+  final bool isChecked;
+  final Function(bool?) checkboxCallback;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+        children: [
+          Checkbox(
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            splashRadius: 0,
+            activeColor: kPrimaryColor,
+            value: isChecked,
+            onChanged: checkboxCallback,
+          ),
+          Text(label)
+        ]
+    );
+  }
+}

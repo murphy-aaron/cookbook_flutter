@@ -22,4 +22,12 @@ class Recipe {
   List<Ingredient> ingredients;
   List<String> utensils;
   List<CookingStep> cookingSteps;
+
+  List<String> getIngredientLabels() {
+    List<String> labels = [];
+    for (Ingredient ingredient in ingredients) {
+      labels.add(ingredient.getLabel());
+    }
+    return labels;
+  }
 }
