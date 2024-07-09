@@ -1,5 +1,6 @@
 import 'package:cookbook_flutter/components/sized_divider.dart';
 import 'package:cookbook_flutter/components/titled_checklist.dart';
+import 'package:cookbook_flutter/model/cooking_step.dart';
 import 'package:cookbook_flutter/model/ingredient.dart';
 import 'package:flutter/material.dart';
 import '../model/recipe.dart';
@@ -19,7 +20,12 @@ Recipe recipe = Recipe(
     'Large mixing bowl',
     'Large cast iron skillet'
   ],
-  cookingSteps: [],
+  cookingSteps: [
+    CookingStep(description: 'Let\'s start with step number one'),
+    CookingStep(description: 'Second step follows the first'),
+    CookingStep(description: 'Finally, step three.'),
+    CookingStep(description: 'Enjoy!')
+  ],
   image: 'https://assets.epicurious.com/photos/5988e3458e3ab375fe3c0caf/1:1/w_1280,c_limit/How-to-Make-Chicken-Alfredo-Pasta-hero-02082017.jpg'
 );
 
@@ -79,6 +85,25 @@ class RecipeScreen extends StatelessWidget {
                 TitledChecklist(
                     title: 'Utensils',
                     listItems: recipe.utensils
+                ),
+                SizedDivider(),
+                Text(
+                  'Cooking Instructions',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                ListView.builder(
+                    itemBuilder: (context, index) {
+                      final CookingStep step = recipe.cookingSteps[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '${index + 1}. ${step.description}'
+                        ),
+                      );
+                    },
+                    itemCount: recipe.cookingSteps.length,
+                    shrinkWrap: true,
+                    primary: false,
                 )
               ],
             ),

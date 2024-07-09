@@ -42,8 +42,8 @@ class _TitledChecklistState extends State<TitledChecklist> {
             );
           },
           itemCount: listItems.length,
-          scrollDirection: Axis.vertical,
           shrinkWrap: true,
+          primary: false,
         ),
       ],
     );
