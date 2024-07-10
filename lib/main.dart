@@ -1,9 +1,16 @@
 import 'package:cookbook_flutter/screens/recipe_browser_screen.dart';
 import 'package:cookbook_flutter/screens/recipe_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const CookbookApp());
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform
+  );
+  runApp(CookbookApp());
 }
 
 class CookbookApp extends StatelessWidget {
