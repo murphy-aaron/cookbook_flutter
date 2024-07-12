@@ -57,7 +57,11 @@ class RecipeBrowserScreen extends StatelessWidget {
                               padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
                               child: FilterRecipesScreen(),
                             ),
-                          )
+                          ),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30.0),
+                        topRight: Radius.circular(30.0)
+                        ))
                       );
                     },
                     child: const Icon(

@@ -1,9 +1,10 @@
 import 'package:cookbook_flutter/model/recipe.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../model/cooking_step.dart';
 import '../model/ingredient.dart';
 
-class RecipeService {
+class RecipeService extends ChangeNotifier {
   Map<String, Recipe> _recipes = {
     '1234': Recipe(
         id: '1234',
@@ -25,7 +26,7 @@ class RecipeService {
           CookingStep(description: 'Enjoy!')
         ],
         image: 'https://assets.epicurious.com/photos/5988e3458e3ab375fe3c0caf/1:1/w_1280,c_limit/How-to-Make-Chicken-Alfredo-Pasta-hero-02082017.jpg',
-        tags: []
+        tags: ['Dinner', 'Pasta']
     ),
     '5678': Recipe(
         id: '5678',
@@ -47,11 +48,44 @@ class RecipeService {
           CookingStep(description: 'Enjoy!')
         ],
         image: 'https://api.vip.foodnetwork.ca/wp-content/uploads/2022/05/summer-rainbow-ratatouille.jpg',
-        tags: []
+        tags: ['Veggie Heavy', 'One Pot', 'Dinner', 'Entree']
     )
   };
 
-  List<Recipe> getRecipes() => List.from(_recipes.values);
+  List<Recipe> getFilteredRecipes(List<String> tags) {
+
+    if (tags.isEmpty) {
+      return getRecipes();
+    }
+
+    List<Recipe> filtered = [];
+
+    for (Recipe recipe in _recipes.values) {
+      bool matchesFilter = false;
+      for (String tag in tags) {
+        if (recipe.tags.contains(tag)) {
+          matchesFilter = true;
+          break;
+        }
+      }
+      if (matchesFilter) {
+        filtered.add(recipe);
+      }
+    }
+
+    return List.unmodifiable(filtered);
+  }
+
+  List<Recipe> getRecipes() => List.unmodifiable(_recipes.values);
 
   Recipe? getRecipe(String recipeId) => _recipes[recipeId];
+
+  List<String> getTags() {
+    Set<String> tags = {};
+    for (Recipe recipe in _recipes.values) {
+      tags.addAll(recipe.tags);
+    }
+
+    return List.unmodifiable(tags);
+  }
 }

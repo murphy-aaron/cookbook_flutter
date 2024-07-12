@@ -1,7 +1,9 @@
 import 'package:cookbook_flutter/screens/recipe_browser_screen.dart';
 import 'package:cookbook_flutter/screens/recipe_screen.dart';
+import 'package:cookbook_flutter/util/recipe_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
 
@@ -18,12 +20,15 @@ class CookbookApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: RecipeBrowserScreen.id,
-      routes: {
-        RecipeBrowserScreen.id: (context) => RecipeBrowserScreen(),
-        RecipeScreen.id: (context) => RecipeScreen()
-      },
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => RecipeService(),
+      child: MaterialApp(
+        initialRoute: RecipeBrowserScreen.id,
+        routes: {
+          RecipeBrowserScreen.id: (context) => RecipeBrowserScreen(),
+          RecipeScreen.id: (context) => RecipeScreen()
+        },
+      ),
     );
   }
 }
