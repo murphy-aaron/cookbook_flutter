@@ -1,3 +1,4 @@
+import 'package:cookbook_flutter/screens/filter_recipes_screen.dart';
 import 'package:cookbook_flutter/util/constants.dart';
 import 'package:cookbook_flutter/util/recipe_service.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,17 @@ class RecipeBrowserScreen extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showModalBottomSheet(
+                          context: context,
+                          builder: (context) => SingleChildScrollView(
+                            child: Container(
+                              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+                              child: FilterRecipesScreen(),
+                            ),
+                          )
+                      );
+                    },
                     child: const Icon(
                       Icons.filter_list_rounded,
                       color: kPrimaryColor,
