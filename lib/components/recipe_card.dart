@@ -3,14 +3,24 @@ import 'package:cookbook_flutter/screens/recipe_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cookbook_flutter/components/recipe_tag.dart';
 
+import '../model/recipe.dart';
+
 class RecipeCard extends StatelessWidget {
-  const RecipeCard({super.key});
+  const RecipeCard({required this.recipe});
+
+  final Recipe recipe;
 
   @override
   Widget build(BuildContext context) {
+
+    List<RecipeTag> tags = [];
+    for (String tag in recipe.tags) {
+      tags.add(RecipeTag(label: tag));
+    }
+
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, RecipeScreen.id);
+        Navigator.pushNamed(context, RecipeScreen.id, arguments: {'recipeId': recipe.id} );
       },
       child: Card(
         elevation: 1.0,
@@ -20,14 +30,14 @@ class RecipeCard extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Recipe Title',
+                recipe.title,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RecipeImage(
-                    url: 'https://assets.epicurious.com/photos/5988e3458e3ab375fe3c0caf/1:1/w_1280,c_limit/How-to-Make-Chicken-Alfredo-Pasta-hero-02082017.jpg',
+                    url: recipe.image ?? 'https://www.eatingwell.com/thmb/088YHsNmHkUQ7iNGP4375MiAXOY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/article_7866255_foods-you-should-eat-every-week-to-lose-weight_-04-d58e9c481bce4a29b47295baade4072d.jpg',
                   ),
                   SizedBox(width: 10.0),
                   Flexible(
@@ -35,18 +45,13 @@ class RecipeCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Short recipe description goes here. List sides, cooking method, or other notes.',
+                            recipe.description,
                           ),
                           Wrap(
                             alignment: WrapAlignment.start,
                             spacing: 5,
                             runSpacing: 5,
-                            children: [
-                              RecipeTag(label: 'Italian'),
-                              RecipeTag(label: 'One-Pot'),
-                              RecipeTag(label: 'Chicken'),
-                              RecipeTag(label: 'Dinner'),
-                            ],
+                            children: tags,
                           )
                         ]),
                   )

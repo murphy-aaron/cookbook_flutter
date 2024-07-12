@@ -1,7 +1,8 @@
 class Ingredient {
 
-  Ingredient({required this.name, required this.portion, required this.unit});
+  Ingredient({required this.id, required this.name, required this.portion, required this.unit});
 
+  String id;
   String name;
   double portion;
   Unit unit;

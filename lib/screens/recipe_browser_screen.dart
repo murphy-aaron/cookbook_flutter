@@ -1,11 +1,14 @@
 import 'package:cookbook_flutter/util/constants.dart';
+import 'package:cookbook_flutter/util/recipe_service.dart';
 import 'package:flutter/material.dart';
 import '../components/recipe_card.dart';
 
 class RecipeBrowserScreen extends StatelessWidget {
-  const RecipeBrowserScreen({super.key});
+  RecipeBrowserScreen({super.key});
 
   static const String id = '/';
+
+  final RecipeService recipeService = RecipeService();
 
   @override
   Widget build(BuildContext context) {
@@ -57,9 +60,12 @@ class RecipeBrowserScreen extends StatelessWidget {
               height: 20.0,
             ),
             Expanded(
-              child: ListView(
-                children: const [RecipeCard(), RecipeCard()],
-              ),
+              child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return RecipeCard(recipe: recipeService.getRecipes()[index]);
+                  },
+                itemCount: recipeService.getRecipes().length,
+              )
             )
           ],
         ),
