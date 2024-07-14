@@ -1,5 +1,5 @@
 import 'package:cookbook_flutter/components/titled_checklist.dart';
-import 'package:cookbook_flutter/util/recipe_service.dart';
+import 'package:cookbook_flutter/model/recipe_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +10,7 @@ class FilterRecipesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    List<String> tags = Provider.of<RecipeService>(context, listen: false).getTags();
+    List<String> tags = Provider.of<RecipeData>(context, listen: false).getTags();
 
     return Container(
         padding: EdgeInsets.all(20),
@@ -29,9 +29,15 @@ class FilterRecipesScreen extends StatelessWidget {
               shrinkWrap: true,
               children: [
                 TitledChecklist(title: 'Tags', listItems: tags)
-            ],
-        ),
-    ]
+              ],
+            ),
+            TextButton(
+                onPressed: () {
+
+                },
+                child: Text('Apply')
+            )
+          ]
         )
     );
   }

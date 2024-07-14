@@ -1,6 +1,6 @@
 import 'package:cookbook_flutter/screens/filter_recipes_screen.dart';
 import 'package:cookbook_flutter/util/constants.dart';
-import 'package:cookbook_flutter/util/recipe_service.dart';
+import 'package:cookbook_flutter/model/recipe_data.dart';
 import 'package:flutter/material.dart';
 import '../components/recipe_card.dart';
 
@@ -9,7 +9,7 @@ class RecipeBrowserScreen extends StatelessWidget {
 
   static const String id = '/';
 
-  final RecipeService recipeService = RecipeService();
+  final RecipeData recipeService = RecipeData();
 
   @override
   Widget build(BuildContext context) {

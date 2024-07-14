@@ -1,6 +1,6 @@
 import 'package:cookbook_flutter/screens/recipe_browser_screen.dart';
 import 'package:cookbook_flutter/screens/recipe_screen.dart';
-import 'package:cookbook_flutter/util/recipe_service.dart';
+import 'package:cookbook_flutter/model/recipe_data.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -21,7 +21,7 @@ class CookbookApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => RecipeService(),
+      create: (BuildContext context) => RecipeData(),
       child: MaterialApp(
         initialRoute: RecipeBrowserScreen.id,
         routes: {

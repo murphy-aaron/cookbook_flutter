@@ -1,10 +1,10 @@
 import 'package:cookbook_flutter/model/recipe.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../model/cooking_step.dart';
-import '../model/ingredient.dart';
+import 'cooking_step.dart';
+import 'ingredient.dart';
 
-class RecipeService extends ChangeNotifier {
+class RecipeData extends ChangeNotifier {
   Map<String, Recipe> _recipes = {
     '1234': Recipe(
         id: '1234',
@@ -51,10 +51,13 @@ class RecipeService extends ChangeNotifier {
         tags: ['Veggie Heavy', 'One Pot', 'Dinner', 'Entree']
     )
   };
+  List<String> _tagFilters = [];
 
-  List<Recipe> getFilteredRecipes(List<String> tags) {
+  List<Recipe> getRecipes() => List.unmodifiable(_recipes.values);
 
-    if (tags.isEmpty) {
+  List<Recipe> getFilteredRecipes() {
+
+    if (_tagFilters.isEmpty) {
       return getRecipes();
     }
 
@@ -62,7 +65,7 @@ class RecipeService extends ChangeNotifier {
 
     for (Recipe recipe in _recipes.values) {
       bool matchesFilter = false;
-      for (String tag in tags) {
+      for (String tag in _tagFilters) {
         if (recipe.tags.contains(tag)) {
           matchesFilter = true;
           break;
@@ -76,8 +79,6 @@ class RecipeService extends ChangeNotifier {
     return List.unmodifiable(filtered);
   }
 
-  List<Recipe> getRecipes() => List.unmodifiable(_recipes.values);
-
   Recipe? getRecipe(String recipeId) => _recipes[recipeId];
 
   List<String> getTags() {
@@ -87,5 +88,10 @@ class RecipeService extends ChangeNotifier {
     }
 
     return List.unmodifiable(tags);
+  }
+
+  void updateFilters(List<String> tagFilters) {
+    _tagFilters = tagFilters;
+    notifyListeners();
   }
 }
