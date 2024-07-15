@@ -2,6 +2,7 @@ import 'package:cookbook_flutter/model/recipe.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'cooking_step.dart';
+import 'filter.dart';
 import 'ingredient.dart';
 
 class RecipeData extends ChangeNotifier {
@@ -51,47 +52,28 @@ class RecipeData extends ChangeNotifier {
         tags: ['Veggie Heavy', 'One Pot', 'Dinner', 'Entree']
     )
   };
-  List<String> _tagFilters = [];
 
-  List<Recipe> getRecipes() => List.unmodifiable(_recipes.values);
+  late Filter _filter;
 
-  List<Recipe> getFilteredRecipes() {
-
-    if (_tagFilters.isEmpty) {
-      return getRecipes();
-    }
-
-    List<Recipe> filtered = [];
-
-    for (Recipe recipe in _recipes.values) {
-      bool matchesFilter = false;
-      for (String tag in _tagFilters) {
-        if (recipe.tags.contains(tag)) {
-          matchesFilter = true;
-          break;
-        }
-      }
-      if (matchesFilter) {
-        filtered.add(recipe);
-      }
-    }
-
-    return List.unmodifiable(filtered);
-  }
-
-  Recipe? getRecipe(String recipeId) => _recipes[recipeId];
-
-  List<String> getTags() {
+  RecipeData() {
     Set<String> tags = {};
     for (Recipe recipe in _recipes.values) {
       tags.addAll(recipe.tags);
     }
 
-    return List.unmodifiable(tags);
+    _filter = Filter(tags: tags);
   }
 
-  void updateFilters(List<String> tagFilters) {
-    _tagFilters = tagFilters;
+  List<Recipe> getRecipes() => _filter.filterRecipes(List.unmodifiable(_recipes.values));
+
+  Recipe? getRecipe(String recipeId) => _recipes[recipeId];
+
+  Set<String> getTags() => _filter.tags;
+
+  void updateFilter(String tag, bool active) {
+    if (_filter.tags.contains(tag)) {
+      _filter.toggleTag(tag, active);
+    }
     notifyListeners();
   }
 }

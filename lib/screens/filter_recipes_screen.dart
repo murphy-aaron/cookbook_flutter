@@ -10,7 +10,7 @@ class FilterRecipesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    List<String> tags = Provider.of<RecipeData>(context, listen: false).getTags();
+    Set<String> tags = Provider.of<RecipeData>(context, listen: false).getTags();
 
     return Container(
         padding: EdgeInsets.all(20),
@@ -28,7 +28,7 @@ class FilterRecipesScreen extends StatelessWidget {
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
               children: [
-                TitledChecklist(title: 'Tags', listItems: tags)
+                TitledChecklist(title: 'Tags', listItems: List.of(tags))
               ],
             ),
             TextButton(
