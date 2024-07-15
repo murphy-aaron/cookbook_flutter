@@ -53,27 +53,26 @@ class RecipeData extends ChangeNotifier {
     )
   };
 
-  late Filter _filter;
+  Filter _filter = Filter();
 
   RecipeData() {
-    Set<String> tags = {};
     for (Recipe recipe in _recipes.values) {
-      tags.addAll(recipe.tags);
+      for (String tag in recipe.tags) {
+        if (!_filter.containsTag(tag)) {
+          _filter.addTag(tag, false);
+        }
+      }
     }
-
-    _filter = Filter(tags: tags);
   }
 
   List<Recipe> getRecipes() => _filter.filterRecipes(List.unmodifiable(_recipes.values));
 
   Recipe? getRecipe(String recipeId) => _recipes[recipeId];
 
-  Set<String> getTags() => _filter.tags;
+  Map<String, bool> getTags() => _filter.tags;
 
-  void updateFilter(String tag, bool active) {
-    if (_filter.tags.contains(tag)) {
-      _filter.toggleTag(tag, active);
-    }
+  void updateFilter(String tag) {
+    _filter.toggleTag(tag);
     notifyListeners();
   }
 }

@@ -2,19 +2,17 @@ import 'package:cookbook_flutter/model/recipe.dart';
 
 class Filter {
 
-  Set<String> _tags = {};
-  Set<String> _activeTags = {};
+  final Map<String, bool> _tags = {};
 
-  Filter({required Set<String> tags, Set<String>? activeTags}) {
-    _tags = tags;
-    _activeTags = activeTags ?? {};
+  void addTag(String label, bool isActive) {
+    _tags[label] = isActive;
   }
 
-  Set<String> get tags => Set.unmodifiable(_tags);
+  Map<String, bool> get tags => Map.unmodifiable(_tags);
 
   List<Recipe> filterRecipes(List<Recipe> recipes) {
 
-    if (_activeTags.isEmpty) {
+    if (!_tags.values.contains(true)) {
       return recipes;
     }
 
@@ -22,8 +20,8 @@ class Filter {
 
     for (Recipe recipe in recipes) {
       bool matchesFilter = false;
-      for (String tag in _activeTags) {
-        if (recipe.tags.contains(tag)) {
+      for (String tag in _tags.keys) {
+        if (_tags[tag]! && recipe.tags.contains(tag)) {
           matchesFilter = true;
           break;
         }
@@ -36,13 +34,13 @@ class Filter {
     return List.unmodifiable(filtered);
   }
 
-  void toggleTag(String tag, bool active) {
-    if (active) {
-      if (!_activeTags.contains(tag)) {
-        _activeTags.add(tag);
-      }
-    } else {
-      _activeTags.remove(tag);
+  void toggleTag(String tag) {
+    if(_tags.containsKey(tag)) {
+      _tags[tag] = !_tags[tag]!;
     }
+  }
+
+  bool containsTag(String tag) {
+    return _tags.containsKey(tag);
   }
 }

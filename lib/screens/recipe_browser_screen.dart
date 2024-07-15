@@ -2,14 +2,19 @@ import 'package:cookbook_flutter/screens/filter_recipes_screen.dart';
 import 'package:cookbook_flutter/util/constants.dart';
 import 'package:cookbook_flutter/model/recipe_data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../components/recipe_card.dart';
 
-class RecipeBrowserScreen extends StatelessWidget {
+class RecipeBrowserScreen extends StatefulWidget {
   RecipeBrowserScreen({super.key});
 
   static const String id = '/';
 
-  final RecipeData recipeService = RecipeData();
+  @override
+  State<RecipeBrowserScreen> createState() => _RecipeBrowserScreenState();
+}
+
+class _RecipeBrowserScreenState extends State<RecipeBrowserScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +82,9 @@ class RecipeBrowserScreen extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                   itemBuilder: (context, index) {
-                    return RecipeCard(recipe: recipeService.getRecipes()[index]);
+                    return RecipeCard(recipe: Provider.of<RecipeData>(context).getRecipes()[index]);
                   },
-                itemCount: recipeService.getRecipes().length,
+                itemCount: Provider.of<RecipeData>(context).getRecipes().length,
               )
             )
           ],
