@@ -43,4 +43,10 @@ class Filter {
   bool containsTag(String tag) {
     return _tags.containsKey(tag);
   }
+
+  void reset() {
+    for(String key in _tags.keys) {
+      _tags[key] = false;
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:cookbook_flutter/model/recipe.dart';
 import 'package:cookbook_flutter/screens/filter_recipes_screen.dart';
 import 'package:cookbook_flutter/util/constants.dart';
 import 'package:cookbook_flutter/model/recipe_data.dart';
@@ -79,13 +80,24 @@ class _RecipeBrowserScreenState extends State<RecipeBrowserScreen> {
             const SizedBox(
               height: 20.0,
             ),
-            Expanded(
-              child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return RecipeCard(recipe: Provider.of<RecipeData>(context).getRecipes()[index]);
-                  },
-                itemCount: Provider.of<RecipeData>(context).getRecipes().length,
+            Visibility(
+                visible: Provider.of<RecipeData>(context).getRecipes().isNotEmpty,
+                child: Expanded(
+                child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      return RecipeCard(recipe: Provider.of<RecipeData>(context).getRecipes()[index]);
+                    },
+                  itemCount: Provider.of<RecipeData>(context).getRecipes().length,
+                ),
               )
+            ),
+            Visibility(
+              visible: Provider.of<RecipeData>(context).getRecipes().isEmpty,
+                child: Wrap(
+                    children: [
+                      Text('Hmm... We couldn\'t find any recipes that match your criteria.')
+                    ]
+                )
             )
           ],
         ),

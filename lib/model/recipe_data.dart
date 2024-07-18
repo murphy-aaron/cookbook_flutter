@@ -75,4 +75,9 @@ class RecipeData extends ChangeNotifier {
     _filter.toggleTag(tag);
     notifyListeners();
   }
+
+  void resetFilter() {
+    _filter.reset();
+    notifyListeners();
+  }
 }
