@@ -1,4 +1,5 @@
 import 'package:cookbook_flutter/model/recipe.dart';
+import 'package:cookbook_flutter/util/recipe_service.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'cooking_step.dart';
@@ -56,6 +57,13 @@ class RecipeData extends ChangeNotifier {
   Filter _filter = Filter();
 
   RecipeData() {
+    _getRecipesFromService();
+  }
+
+  void _getRecipesFromService() async {
+    RecipeService service = RecipeService();
+    _recipes = await service.getRecipes();
+
     for (Recipe recipe in _recipes.values) {
       for (String tag in recipe.tags) {
         if (!_filter.containsTag(tag)) {
@@ -63,6 +71,8 @@ class RecipeData extends ChangeNotifier {
         }
       }
     }
+
+    notifyListeners();
   }
 
   List<Recipe> getRecipes() => _filter.filterRecipes(List.unmodifiable(_recipes.values));
