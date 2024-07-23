@@ -3,6 +3,7 @@ import 'package:cookbook_flutter/components/titled_checklist.dart';
 import 'package:cookbook_flutter/model/cooking_step.dart';
 import 'package:cookbook_flutter/model/recipe_data.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../model/recipe.dart';
 
@@ -15,7 +16,7 @@ class RecipeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final arguments = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
-    final Recipe recipe = RecipeData().getRecipe(arguments['recipeId'])!;
+    final Recipe recipe = Provider.of<RecipeData>(context).getRecipe(arguments['recipeId'])!;
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
