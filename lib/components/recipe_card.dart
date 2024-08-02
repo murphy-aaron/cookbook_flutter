@@ -6,7 +6,7 @@ import 'package:cookbook_flutter/components/recipe_tag.dart';
 import '../model/recipe.dart';
 
 class RecipeCard extends StatelessWidget {
-  const RecipeCard({required this.recipe});
+  const RecipeCard({super.key, required this.recipe});
 
   final Recipe recipe;
 
@@ -31,7 +31,7 @@ class RecipeCard extends StatelessWidget {
             children: [
               Text(
                 recipe.title,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +39,7 @@ class RecipeCard extends StatelessWidget {
                   RecipeImage(
                     url: recipe.image,
                   ),
-                  SizedBox(width: 10.0),
+                  const SizedBox(width: 10.0),
                   Flexible(
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

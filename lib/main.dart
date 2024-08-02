@@ -12,7 +12,7 @@ void main() async {
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform
   );
-  runApp(CookbookApp());
+  runApp(const CookbookApp());
 }
 
 class CookbookApp extends StatelessWidget {
@@ -25,8 +25,8 @@ class CookbookApp extends StatelessWidget {
       child: MaterialApp(
         initialRoute: RecipeBrowserScreen.id,
         routes: {
-          RecipeBrowserScreen.id: (context) => RecipeBrowserScreen(),
-          RecipeScreen.id: (context) => RecipeScreen()
+          RecipeBrowserScreen.id: (context) => const RecipeBrowserScreen(),
+          RecipeScreen.id: (context) => const RecipeScreen()
         },
       ),
     );

@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import '../model/recipe_data.dart';
 
 class FilterChecklist extends StatefulWidget {
-  const FilterChecklist({required this.tags});
+  const FilterChecklist({super.key, required this.tags});
 
   final Map<String, bool> tags;
 

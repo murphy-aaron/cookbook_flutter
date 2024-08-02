@@ -31,7 +31,7 @@ class RecipeService {
       for (var ingredient in entry['ingredients']) {
         ingredients.add(
             Ingredient(
-                id: ingredient['id'],
+                id: "",
                 name: ingredient['name'],
                 portion: double.parse(ingredient['portion'].toString()),
                 unit: Ingredient.getUnit(ingredient['unit'])
@@ -52,13 +52,16 @@ class RecipeService {
           id: entry.id,
           title: entry['title'],
           description: entry['description'],
-          image: entry['image'],
           servings: double.parse(entry['servings'].toString()),
           cookTimeMinutes: entry['cookTimeMinutes'],
           ingredients: ingredients,
           utensils: utensils,
           cookingSteps: cookingSteps,
           tags: tags);
+
+      if((entry.data() as Map<String, dynamic>).containsKey('image')) {
+        recipe.image = entry['image'];
+      }
 
       recipes.putIfAbsent(entry.id, () => recipe);
     }

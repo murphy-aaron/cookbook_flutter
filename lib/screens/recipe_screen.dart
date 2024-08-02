@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import '../model/recipe.dart';
 
 class RecipeScreen extends StatelessWidget {
-  RecipeScreen({super.key});
+  const RecipeScreen({super.key});
 
   static const String id = '/recipe';
 
@@ -36,40 +36,40 @@ class RecipeScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   recipe.title,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
                 Text(
                   recipe.description
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.timelapse),
+                    const Icon(Icons.timelapse),
                     Text(' Total: ${recipe.cookTimeMinutes} minutes'),
-                    SizedBox(width: 50),
-                    Icon(Icons.dining_outlined),
+                    const SizedBox(width: 50),
+                    const Icon(Icons.dining_outlined),
                     Text(' Makes: ${recipe.servings.round()} servings')
                   ],
                 ),
-                SizedDivider(),
+                const SizedDivider(),
                 TitledChecklist(
                     title: 'Ingredients',
                     listItems: recipe.getIngredientLabels()
                 ),
-                SizedDivider(),
+                const SizedDivider(),
                 TitledChecklist(
                     title: 'Utensils',
                     listItems: recipe.utensils
                 ),
-                SizedDivider(),
-                Text(
+                const SizedDivider(),
+                const Text(
                   'Cooking Instructions',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
@@ -79,7 +79,7 @@ class RecipeScreen extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          '${index + 1}. ${step.description}'
+                          '${index + 1}. ${step.description}',
                         ),
                       );
                     },

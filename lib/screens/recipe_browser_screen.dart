@@ -1,4 +1,3 @@
-import 'package:cookbook_flutter/model/recipe.dart';
 import 'package:cookbook_flutter/screens/filter_recipes_screen.dart';
 import 'package:cookbook_flutter/util/constants.dart';
 import 'package:cookbook_flutter/model/recipe_data.dart';
@@ -7,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../components/recipe_card.dart';
 
 class RecipeBrowserScreen extends StatefulWidget {
-  RecipeBrowserScreen({super.key});
+  const RecipeBrowserScreen({super.key});
 
   static const String id = '/';
 
@@ -61,10 +60,10 @@ class _RecipeBrowserScreenState extends State<RecipeBrowserScreen> {
                           builder: (context) => SingleChildScrollView(
                             child: Container(
                               padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                              child: FilterRecipesScreen(),
+                              child: const FilterRecipesScreen(),
                             ),
                           ),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(
+                        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30.0),
                         topRight: Radius.circular(30.0)
                         ))
@@ -93,7 +92,7 @@ class _RecipeBrowserScreenState extends State<RecipeBrowserScreen> {
             ),
             Visibility(
               visible: Provider.of<RecipeData>(context).getRecipes().isEmpty,
-                child: Wrap(
+                child: const Wrap(
                     children: [
                       Text('Hmm... We couldn\'t find any recipes that match your criteria.')
                     ]

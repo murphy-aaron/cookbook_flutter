@@ -14,10 +14,10 @@ class FilterRecipesScreen extends StatelessWidget {
     Map<String, bool> tags = Provider.of<RecipeData>(context).getTags();
 
     return Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Center(
+            const Center(
                 child: Text(
                   'Filter Recipes',
                   style: TextStyle(
@@ -40,24 +40,24 @@ class FilterRecipesScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: Text('Apply'),
-                    style: ButtonStyle(
+                    style: const ButtonStyle(
                       backgroundColor: WidgetStatePropertyAll<Color>(kPrimaryColor),
                       foregroundColor: WidgetStatePropertyAll<Color>(Colors.white)
                     ),
+                      child: const Text('Apply'),
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Expanded(
                   child: TextButton(
                       onPressed: () {
                         Provider.of<RecipeData>(context, listen: false).resetFilter();
                       },
-                      child: Text('Reset'),
-                      style: ButtonStyle(
+                      style: const ButtonStyle(
                         backgroundColor: WidgetStatePropertyAll<Color>(kPrimaryColor),
                         foregroundColor: WidgetStatePropertyAll<Color>(Colors.white)
-                      )
+                      ),
+                      child: const Text('Reset')
                   ),
                 )
               ],

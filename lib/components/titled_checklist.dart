@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../util/constants.dart';
 
 class TitledChecklist extends StatefulWidget {
-  const TitledChecklist({required this.title, required this.listItems});
+  const TitledChecklist({super.key, required this.title, required this.listItems});
 
   final String title;
   final List<String> listItems;
@@ -13,7 +13,13 @@ class TitledChecklist extends StatefulWidget {
 
 class _TitledChecklistState extends State<TitledChecklist> {
 
-  List<bool> listItemsChecked = List.filled(6, false, growable: false);
+  late List<bool> listItemsChecked;
+
+  @override
+  void initState() {
+    listItemsChecked = List.filled(widget.listItems.length, false, growable: false);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +32,7 @@ class _TitledChecklistState extends State<TitledChecklist> {
       children: [
         Text(
           title,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
         ),
         ListView.builder(
           itemBuilder: (context, index) {
@@ -52,7 +58,7 @@ class _TitledChecklistState extends State<TitledChecklist> {
 
 class ChecklistItem extends StatelessWidget {
 
-  const ChecklistItem({required this.label, required this.isChecked, required this.checkboxCallback});
+  const ChecklistItem({super.key, required this.label, required this.isChecked, required this.checkboxCallback});
 
   final String label;
   final bool isChecked;

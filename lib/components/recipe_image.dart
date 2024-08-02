@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RecipeImage extends StatelessWidget {
-  const RecipeImage({required this.url});
+  const RecipeImage({super.key, required this.url});
 
   final String url;
 
