@@ -14,7 +14,7 @@ Welcome to my cookbook! This mobile application is designed to showcase and mana
 - Search for recipes by title
 - Convert ingredient portions between units and for varying serving yields
 - Interactive cooking instructions including timers
-- Integrationg of users to allow creation, editing, saving, and sharing recipes
+- Integration of users to allow creation, editing, saving, and sharing recipes
 - Weekly menu allowing for selection of recipes
 - Shopping list generation based on recipe selection
 - Unit and Integration testing suite
