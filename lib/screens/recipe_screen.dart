@@ -2,6 +2,7 @@ import 'package:cookbook_flutter/components/sized_divider.dart';
 import 'package:cookbook_flutter/components/titled_checklist.dart';
 import 'package:cookbook_flutter/model/cooking_step.dart';
 import 'package:cookbook_flutter/model/recipe_data.dart';
+import 'package:cookbook_flutter/util/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,33 @@ class RecipeScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) => SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              child: Column(
+                children: [
+
+                ],
+              )
+            )
+            ),
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30.0),
+          topRight: Radius.circular(30.0)
+          ))
+          );
+        },
+        backgroundColor: kPrimaryColor,
+        child: Icon(
+          Icons.timer_outlined,
+          color: Colors.white,
+          size: 40,
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.grey.shade100,
       ),
@@ -86,7 +114,8 @@ class RecipeScreen extends StatelessWidget {
                     itemCount: recipe.cookingSteps.length,
                     shrinkWrap: true,
                     primary: false,
-                )
+                ),
+                SizedBox(height: 80)
               ],
             ),
           )
